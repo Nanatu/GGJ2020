@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
     int wallDirX;
     float timeToWallUnstick;
 
+    public float health = 200f;
+
 
     void Start()
     {
@@ -174,7 +176,16 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        //TODO
+        health = health - damage;
+        if (health <= 0)
+        {
+            handleDeath();
+        }
+    }
+
+    public void handleDeath()
+    {
+        Destroy(this.gameObject);
     }
 
     public void OnJumpInputDown()

@@ -215,6 +215,8 @@ GameObject:
   - component: {fileID: 346682861}
   - component: {fileID: 346682860}
   - component: {fileID: 346682859}
+  - component: {fileID: 346682862}
+  - component: {fileID: 346682863}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -237,12 +239,14 @@ MonoBehaviour:
   damageAmount: 10
   health: 100
   maxHealth: 100
-  moveRate: 10
+  moveRate: 3
   maxRange: 10
   minRange: 1
-  attackRate: 2
+  backupRate: 0.5
+  attackRate: 20
+  backupDistance: 1
   attackDistance: 4
-  attackCooldown: 2
+  attackCooldown: 3
   anim: {fileID: 0}
 --- !u!212 &346682860
 SpriteRenderer:
@@ -308,6 +312,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &346682862
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346682858}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.00001
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
+--- !u!61 &346682863
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346682858}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &762692384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -401,6 +452,12 @@ GameObject:
 --- !u!95 &1436467014 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4958683199577059543, guid: b45ddd308dfdcf24689fd9699a87f59c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1968495656}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1436467020 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4958683199577059536, guid: b45ddd308dfdcf24689fd9699a87f59c,
     type: 3}
   m_PrefabInstance: {fileID: 1968495656}
   m_PrefabAsset: {fileID: 0}
@@ -498,10 +555,20 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1436467014}
+    - target: {fileID: 4958683199577059537, guid: b45ddd308dfdcf24689fd9699a87f59c,
+        type: 3}
+      propertyPath: ColliderTransform
+      value: 
+      objectReference: {fileID: 1436467020}
     - target: {fileID: 4958683199577059540, guid: b45ddd308dfdcf24689fd9699a87f59c,
         type: 3}
       propertyPath: collisionMask.m_Bits
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958683199577059541, guid: b45ddd308dfdcf24689fd9699a87f59c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4958683200322983108, guid: b45ddd308dfdcf24689fd9699a87f59c,
         type: 3}
