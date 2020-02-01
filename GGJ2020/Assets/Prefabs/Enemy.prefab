@@ -155,7 +155,7 @@ MonoBehaviour:
   wallSlideSpeedMax: 3
   wallStickTime: 0.25
   attackInput: 0
-  target: {fileID: 0}
+  target: {fileID: 4958683199577059530, guid: b45ddd308dfdcf24689fd9699a87f59c, type: 3}
   health: 120
 --- !u!50 &1912333396686765024
 Rigidbody2D:
