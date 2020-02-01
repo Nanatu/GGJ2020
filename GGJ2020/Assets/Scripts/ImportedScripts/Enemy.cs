@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         controller = GetComponent<Controller2D>();
 
-       target = GameObject.Find("Player");
+       target = GameObject.Find("Mub");
 
     }
     void Update()
