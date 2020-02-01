@@ -13,14 +13,19 @@ public abstract class GenericEnemy : MonoBehaviour
     public float moveRate = 10f;        // default value
     public float maxRange = 10f;        // default value
     public float minRange = 1f;         // default value
-    private float distanceToPlayer = 1000f; 
+    private float distanceToPlayer = 1000f;
+    public float attackRate = 2f;
+    private bool attacking = false;
+    public float attackDistance = 4f;
+    public float attackCooldown = 3f;
 
-    public GameObject Player;
+    private GameObject Player;
     public Animator anim;
 
     // Start is called before the first frame update
     public void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponent<Animator>();
         health = maxHealth;
     }
@@ -30,6 +35,7 @@ public abstract class GenericEnemy : MonoBehaviour
     {
         distanceToPlayer = Vector2.Distance(transform.position, Player.transform.position);
         moveToEnemy();
+        //print(distanceToPlayer);
     }
 
     public void TakeDamage(int damage)
@@ -50,12 +56,15 @@ public abstract class GenericEnemy : MonoBehaviour
     {
         if (distanceToPlayer < maxRange && distanceToPlayer > minRange)
         {
-            transform.LookAt(Player.transform);
-            transform.position += transform.forward * moveRate * Time.deltaTime;
+            transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, moveRate * Time.deltaTime);
+            print(transform.position);
         }
         if (distanceToPlayer < minRange)
         {
-            attack();
+            if (!attacking)
+            {
+                attack();
+            }
         }
     }
 
@@ -70,8 +79,27 @@ public abstract class GenericEnemy : MonoBehaviour
     }
     
 
-    private void attack()
+    public void attack()
     {
+        attacking = true;
+        var x_diff = Player.transform.position.x - transform.position.x;
+        var attackDirection = 1;
+        if (x_diff < 0)
+        {
+            attackDirection = -1;
+        }
+        Vector3 attackTarget = transform.position + new Vector3(attackDistance * attackDirection, 0,0);
+        while (transform.position != attackTarget)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, attackTarget, attackRate * Time.deltaTime);
+        }
+        StartCoroutine(waiter());
         
+    }
+
+    IEnumerator waiter()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        attacking = false;
     }
 }
