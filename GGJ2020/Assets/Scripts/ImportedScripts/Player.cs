@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     int wallDirX;
     float timeToWallUnstick;
 
-    public float health = 200f;
+    public int health = 5;
 
 
     void Start()
