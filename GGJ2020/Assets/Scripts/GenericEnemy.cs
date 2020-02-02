@@ -78,7 +78,7 @@ public abstract class GenericEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player" && !currentCollisions.Contains(col.gameObject) && attacking)
+        if (col.gameObject.tag == "Player" && !currentCollisions.Contains(col.gameObject) && attacking == true)
             {
                 currentCollisions.Add(col.gameObject);
                 col.gameObject.SendMessage("TakeDamage", damageAmount);
@@ -96,6 +96,7 @@ public abstract class GenericEnemy : MonoBehaviour
 
     public void attack()
     {
+        anim.SetBool("BackingUp", true);
         attacking = true;
         attackDirection = (Player.transform.position - transform.position);
         attackDirection.Normalize();
@@ -142,15 +143,20 @@ public abstract class GenericEnemy : MonoBehaviour
             objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, backup, backupSpeed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+        anim.SetBool("BackingUp", false);
 
+        anim.SetBool("Attacking", true);
         // speed should be 1 unit per second
         while (objectToMove.transform.position != target)
         {
             objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, target, attackSpeed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+        anim.SetBool("Attacking", false);
 
+        anim.SetBool("CoolingDown", true);
         yield return new WaitForSeconds(attackCooldown);
+        anim.SetBool("CoolingDown", false);
         attacking = false;
         ResetCollisionList();
     }

@@ -32,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
             if (gameObject.name == "LightAttack")
             {
                 col.gameObject.SendMessage("HitMove", new Vector2(faceDir * 25.0f, 0.0f));
-                SoundManagerScript.PlaySound("mubAttack");
+                //SoundManagerScript.PlaySound("mubAttack");
             }
         }
 
