@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     //Movement Variables
     float gravity;
     Vector3 velocity;
-    float moveSpeed = 6;
+    float moveSpeed = 8;
     float accelerationTimeGrounded = .1f;
     float velocityXSmoothing;
 
@@ -101,6 +101,7 @@ public class Player : MonoBehaviour
             if (comboPresses == 1)
             {
                 animator.SetTrigger("LightAttackT");
+                SoundManagerScript.PlaySound("mubAttack");
             }
             Debug.Log("Combo Presses = " + comboPresses);
         }
@@ -204,6 +205,7 @@ public class Player : MonoBehaviour
             else
             {
                 velocity.y = maxJumpVelocity;
+                SoundManagerScript.PlaySound("mubJump");
             }
         }
     }

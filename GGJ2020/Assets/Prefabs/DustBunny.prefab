@@ -180,7 +180,7 @@ MonoBehaviour:
   wallStickTime: 0.25
   attackInput: 0
   target: {fileID: 0}
-  health: 3
+  health: 2
   canAttack: 1
   attackCooldown: 3
 --- !u!95 &7252869401081928486
