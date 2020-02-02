@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     List<GameObject> currentCollisions = new List<GameObject>();
-
+    int faceDir;
 
     // Start is called before the first frame update
     void Start()
@@ -21,20 +21,17 @@ public class PlayerAttack : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        faceDir = this.transform.parent.GetComponent<Controller2D>().collisions.faceDir;
         if (col.gameObject.tag == "Enemy" && !currentCollisions.Contains(col.gameObject))
         {
             currentCollisions.Add(col.gameObject);
             col.gameObject.SendMessage("TakeDamage", 1);
-           // col.gameObject.SendMessage("HitMove", new Vector2(-5.0f, 0.0f));
+            // col.gameObject.SendMessage("HitMove", new Vector2(-5.0f, 0.0f));
             Debug.Log("Adding" + col.gameObject.tag + "to List");
 
             if (gameObject.name == "LightAttack")
             {
-                col.gameObject.SendMessage("HitMove", new Vector2(-5.0f, 0.0f));
-            }
-            if (gameObject.name == "HeavyAttack")
-            {
-                col.gameObject.SendMessage("HitMove", new Vector2(0.0f, 10.0f));
+                col.gameObject.SendMessage("HitMove", new Vector2(faceDir * 25.0f, 0.0f));
             }
         }
 
@@ -42,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
 
     void ResetCollisionList()
     {
-        Debug.Log("Clearing Collision List");
+        //Debug.Log("Clearing Collision List");
         currentCollisions.Clear();
     }
 }
