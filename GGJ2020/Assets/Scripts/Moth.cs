@@ -7,8 +7,8 @@ public class Moth : GenericEnemy
     // Start is called before the first frame update
     void Start()
     {
-        damageAmount = 20;
-        maxHealth = 30;
+        damageAmount = 1;
+        maxHealth = 2;
         moveRate = 5f;
         maxRange = 20;
         minRange = 4;
