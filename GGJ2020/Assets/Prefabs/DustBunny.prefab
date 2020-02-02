@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8206333370881132581}
   - component: {fileID: 8206333370881132582}
   - component: {fileID: 8206333370881132583}
-  - component: {fileID: 8206333370881132576}
+  - component: {fileID: 7263783227230987126}
   - component: {fileID: 8206333370881132577}
   m_Layer: 0
   m_Name: DustBunny
@@ -154,7 +154,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4966612, y: 2.3509169}
   m_EdgeRadius: 0
---- !u!114 &8206333370881132576
+--- !u!114 &7263783227230987126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,10 +163,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8206333370881132578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5d9f2a62052d6f4f86ecedf4b428957, type: 3}
+  m_Script: {fileID: 11500000, guid: 516dcbfb75fa1904a8005299d58d31e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 8206333370881132577}
+  targetTime: 2
+  damageAmount: 1
+  animator: {fileID: 0}
   maxJumpHeight: 4
   minJumpHeight: 1
   timeToJumpApex: 0.4
@@ -178,6 +180,7 @@ MonoBehaviour:
   attackInput: 0
   target: {fileID: 0}
   health: 120
+  attackCooldown: 3
 --- !u!95 &8206333370881132577
 Animator:
   serializedVersion: 3

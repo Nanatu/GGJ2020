@@ -56,7 +56,7 @@ public class DustBunny : MonoBehaviour
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         controller = GetComponent<Controller2D>();
 
-        target = GameObject.Find("mub");
+        target = GameObject.Find("Mub");
 
     }
     void Update()
@@ -171,7 +171,7 @@ public class DustBunny : MonoBehaviour
             attacking = true;
         }
 
-        if (col.gameObject.tag == "mub" && !currentCollisions.Contains(col.gameObject) && attacking == true)
+        if (col.gameObject.tag == "Player" && !currentCollisions.Contains(col.gameObject) && attacking == true)
         {
             currentCollisions.Add(col.gameObject);
             col.gameObject.SendMessage("TakeDamage", damageAmount);
