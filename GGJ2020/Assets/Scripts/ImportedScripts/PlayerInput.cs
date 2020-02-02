@@ -20,10 +20,12 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+      
             player.OnJumpInputDown();
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            SoundManagerScript.PlaySound("mubJump");
             player.OnJumpInputUp();
         }
         if (Input.GetKeyDown("z"))

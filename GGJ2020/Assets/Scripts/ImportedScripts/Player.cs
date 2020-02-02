@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
 
     //Inputs
+   
     Controller2D controller;
     Vector2 directionalInput;
     PolygonCollider2D lightAttackHurtBox;
@@ -161,6 +162,7 @@ public class Player : MonoBehaviour
 
     public void handleDeath()
     {
+        SoundManagerScript.PlaySound("mubDeath");
         Destroy(this.gameObject);
     }
 
