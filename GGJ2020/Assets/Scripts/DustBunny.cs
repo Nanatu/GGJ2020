@@ -9,7 +9,7 @@ public class DustBunny : MonoBehaviour
 
     public float targetTime = 2.0f;
 
-    public float damageAmount = 10f;    // default value
+    public float damageAmount = 1f;    // default value
     public Animator animator;
 
     public float maxJumpHeight = 4;
@@ -56,7 +56,7 @@ public class DustBunny : MonoBehaviour
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         controller = GetComponent<Controller2D>();
 
-        target = GameObject.Find("Mub");
+        target = GameObject.Find("mub");
 
     }
     void Update()
@@ -170,16 +170,18 @@ public class DustBunny : MonoBehaviour
         {
             attacking = true;
         }
-            if (col.gameObject.tag == "Player" && !currentCollisions.Contains(col.gameObject) && attacking)
-            {
-                currentCollisions.Add(col.gameObject);
-                col.gameObject.SendMessage("TakeDamage", damageAmount);
-                //canAttack = false;
-                //targetTime = 2.0f;
-                Debug.Log("Adding" + col.gameObject.tag + "to List");
 
-                StartCoroutine(attackCooldownTime());
-            }
+        if (col.gameObject.tag == "mub" && !currentCollisions.Contains(col.gameObject) && attacking == true)
+        {
+            currentCollisions.Add(col.gameObject);
+            col.gameObject.SendMessage("TakeDamage", damageAmount);
+            print(damageAmount);
+            //canAttack = false;
+            //targetTime = 2.0f;
+            Debug.Log("Adding" + col.gameObject.tag + "to List");
+
+            StartCoroutine(attackCooldownTime());
+        }
             //}
   
     }
