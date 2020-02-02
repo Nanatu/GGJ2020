@@ -101,6 +101,7 @@ public class Player : MonoBehaviour
             if (comboPresses == 1)
             {
                 animator.SetTrigger("LightAttackT");
+                SoundManagerScript.PlaySound("mubAttack");
             }
             Debug.Log("Combo Presses = " + comboPresses);
         }
@@ -204,6 +205,7 @@ public class Player : MonoBehaviour
             else
             {
                 velocity.y = maxJumpVelocity;
+                SoundManagerScript.PlaySound("mubJump");
             }
         }
     }
