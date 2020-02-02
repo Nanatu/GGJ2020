@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
-  health: 2
+  health: 1
   maxHealth: 2
   moveRate: 10
   maxRange: 10

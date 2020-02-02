@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     //Movement Variables
     float gravity;
     Vector3 velocity;
-    float moveSpeed = 6;
+    float moveSpeed = 8;
     float accelerationTimeGrounded = .1f;
     float velocityXSmoothing;
 
