@@ -31,6 +31,7 @@ public class Moth : GenericEnemy
         if (health <= 0)
         {
             handleDeath();
+
         }
     }
 

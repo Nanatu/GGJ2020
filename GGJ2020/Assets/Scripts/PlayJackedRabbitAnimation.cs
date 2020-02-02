@@ -10,6 +10,7 @@ public class PlayJackedRabbitAnimation : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            SoundManagerScript.PlaySound("jackedRabbit");
             myAnimationController.SetBool("JackedRabbitIsReady", true);
         }
     }

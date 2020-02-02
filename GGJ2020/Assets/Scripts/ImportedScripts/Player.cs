@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
 
     public void handleDeath()
     {
-        SoundManagerScript.PlaySound("mubDeath");
+        SoundManagerScript.PlaySound("mub_death3");
         Destroy(this.gameObject);
     }
 

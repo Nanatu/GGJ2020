@@ -199,7 +199,7 @@ public class DustBunny : MonoBehaviour
             animator.SetBool("Chase", false);
             attacking = false;
             Debug.Log("Adding" + col.gameObject.tag + "to List");
-
+            SoundManagerScript.PlaySound("dustbunny_attack3");
             StartCoroutine(attackCooldownTime());
         }
             //}

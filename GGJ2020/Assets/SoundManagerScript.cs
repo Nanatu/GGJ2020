@@ -6,7 +6,7 @@ using UnityEngine;
 public class SoundManagerScript : MonoBehaviour
 {
 
-    public static AudioClip playerAttackSound, playerDeathSound, playerJumpSound, enemyDeathSound;
+    public static AudioClip playerAttackSound, playerDeathSound, playerJumpSound, enemyDeathSound, dustAttack, jackedRabbitEnter;
 
     static AudioSource audioSrc;
     
@@ -16,9 +16,11 @@ public class SoundManagerScript : MonoBehaviour
     {
 
         playerAttackSound = Resources.Load<AudioClip> ("mubAttack");
-        playerDeathSound = Resources.Load<AudioClip> ("mubDeath");
+        playerDeathSound = Resources.Load<AudioClip> ("mub_death1");
         playerJumpSound = Resources.Load<AudioClip> ("mubJump");
         enemyDeathSound = Resources.Load<AudioClip> ("dustDeath");
+        dustAttack = Resources.Load<AudioClip> ("dustbunny_attack3");
+        jackedRabbitEnter = Resources.Load<AudioClip> ("jackedRabbit");
 
         audioSrc = GetComponent<AudioSource>();
 
@@ -37,7 +39,7 @@ public class SoundManagerScript : MonoBehaviour
             case "mubAttack":
                 audioSrc.PlayOneShot(playerAttackSound);
                 break;
-            case "mubDeath":
+            case "mub_death1":
                 audioSrc.PlayOneShot(playerDeathSound);
                 break;
             case "mubJump":
@@ -45,6 +47,12 @@ public class SoundManagerScript : MonoBehaviour
                 break;
             case "dustDeath":
                 audioSrc.PlayOneShot(enemyDeathSound);
+                break;
+            case "dustbunny_attack3":
+                audioSrc.PlayOneShot(dustAttack);
+                break;
+            case "jackedRabbit":
+                audioSrc.PlayOneShot(jackedRabbitEnter);
                 break;
 
         }
