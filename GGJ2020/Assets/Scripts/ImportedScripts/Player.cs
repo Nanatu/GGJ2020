@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     Vector2 directionalInput;
     PolygonCollider2D lightAttackHurtBox;
     PolygonCollider2D heavyAttackHurtBox;
+    private Health healthScript;
     public Transform ColliderTransform;
 
     public Animator animator;
@@ -55,6 +56,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         controller = GetComponent<Controller2D>();
+
+        healthScript = GetComponent<Health>();
 
         //Get Attack type children
         lightAttackHurtBox = this.transform.GetChild(0).GetComponent<PolygonCollider2D>();
@@ -153,6 +156,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health = health - damage;
+        healthScript.health = health;
         if (health <= 0)
         {
             handleDeath();
