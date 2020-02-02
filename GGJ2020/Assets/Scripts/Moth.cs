@@ -8,7 +8,7 @@ public class Moth : GenericEnemy
     void Start()
     {
         damageAmount = 1;
-        maxHealth = 2;
+        maxHealth = 1;
         moveRate = 5f;
         maxRange = 20;
         minRange = 4;
@@ -23,5 +23,19 @@ public class Moth : GenericEnemy
     void Update()
     {
         base.Update();
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health = health - damage;
+        if (health <= 0)
+        {
+            handleDeath();
+        }
+    }
+
+    private void handleDeath()
+    {
+        Destroy(this.gameObject);
     }
 }

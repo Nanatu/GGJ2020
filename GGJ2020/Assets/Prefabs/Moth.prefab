@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2488859030043534028}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7032303420727376496}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 2366754793366408797}
   - component: {fileID: 34479457232657215}
   - component: {fileID: 8573077132244210758}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Untitled_Artwork-3.png
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 4575244894435619572}
   - component: {fileID: 6159894031669013207}
   - component: {fileID: 2454694743776133255}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Untitled_Artwork-1 2.png
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5136225907506924804}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,9 +311,9 @@ GameObject:
   - component: {fileID: 4005470431354282055}
   - component: {fileID: 4005470431354282056}
   - component: {fileID: 4005470431354282057}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Moth
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 1
   health: 1
-  maxHealth: 2
+  maxHealth: 1
   moveRate: 10
   maxRange: 10
   minRange: 1
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 4930618349694995686}
   - component: {fileID: 1392175809341453337}
   - component: {fileID: 4341960824813989386}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Untitled_Artwork-2.png
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 788096692432011976}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4984774435521476254}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,7 +619,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9048767907013772441}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
