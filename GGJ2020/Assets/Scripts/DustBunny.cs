@@ -227,6 +227,7 @@ public class DustBunny : MonoBehaviour
         Debug.Log("Enemy Health = " + health);
         if (health <= 0)
         {
+            SoundManagerScript.PlaySound("dustDeath");
             Destroy(this.gameObject);
         }
     }

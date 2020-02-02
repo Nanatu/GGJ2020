@@ -24,6 +24,7 @@ public class PlayerAttack : MonoBehaviour
         faceDir = this.transform.parent.GetComponent<Controller2D>().collisions.faceDir;
         if (col.gameObject.tag == "Enemy" && !currentCollisions.Contains(col.gameObject))
         {
+            SoundManagerScript.PlaySound("mubAttack");
             currentCollisions.Add(col.gameObject);
             col.gameObject.SendMessage("TakeDamage", 1);
             // col.gameObject.SendMessage("HitMove", new Vector2(-5.0f, 0.0f));
@@ -31,6 +32,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (gameObject.name == "LightAttack")
             {
+                SoundManagerScript.PlaySound("mubAttack");
                 col.gameObject.SendMessage("HitMove", new Vector2(faceDir * 25.0f, 0.0f));
             }
         }
