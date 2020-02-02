@@ -8,10 +8,12 @@ public class Player : MonoBehaviour
 {
 
     //Inputs
+   
     Controller2D controller;
     Vector2 directionalInput;
     PolygonCollider2D lightAttackHurtBox;
     PolygonCollider2D heavyAttackHurtBox;
+    private Health healthScript;
     public Transform ColliderTransform;
 
     public Animator animator;
@@ -56,12 +58,11 @@ public class Player : MonoBehaviour
     {
         controller = GetComponent<Controller2D>();
 
+        healthScript = GetComponent<Health>();
+
         //Get Attack type children
         lightAttackHurtBox = this.transform.GetChild(0).GetComponent<PolygonCollider2D>();
         lightAttackHurtBox.enabled = false;
-
-        heavyAttackHurtBox = this.transform.GetChild(1).GetComponent<PolygonCollider2D>();
-        heavyAttackHurtBox.enabled = false;
 
         //Derive Gravity and Jump heights
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
@@ -99,36 +100,18 @@ public class Player : MonoBehaviour
             comboPresses++;
             if (comboPresses == 1)
             {
-                animator.SetBool("LightAttack", true);
+                animator.SetTrigger("LightAttackT");
             }
             Debug.Log("Combo Presses = " + comboPresses);
         }
 
     }
 
-    public void returnAttack1()
+    public void ReturnLightAttack()
     {
-        if (comboPresses >= 2)
-        {
-            animator.SetBool("HeavyAttack", true);
-        }
-        else
-        {
-            animator.SetBool("LightAttack", false);
             comboPresses = 0;
             lightAttackHurtBox.gameObject.SendMessage("ResetCollisionList");
-        }
     }
-
-    public void returnAttack2()
-    {
-        animator.SetBool("LightAttack", false);
-        animator.SetBool("HeavyAttack", false);
-        comboPresses = 0;
-        lightAttackHurtBox.gameObject.SendMessage("ResetCollisionList");
-        heavyAttackHurtBox.gameObject.SendMessage("ResetCollisionList");
-    }
-
 
     public void SetDirectionalInput(Vector2 input)
     {
@@ -168,15 +151,13 @@ public class Player : MonoBehaviour
 
     public void DisableHurtBox()
     {
-        //animator.SetBool("LightAttack", false);
-        //animator.SetBool("HeavyAttack", false);
         lightAttackHurtBox.enabled = false;
-        heavyAttackHurtBox.enabled = false;
     }
 
     public void TakeDamage(int damage)
     {
         health = health - damage;
+        healthScript.health = health;
         if (health <= 0)
         {
             handleDeath();
@@ -185,6 +166,7 @@ public class Player : MonoBehaviour
 
     public void handleDeath()
     {
+        SoundManagerScript.PlaySound("mubDeath");
         Destroy(this.gameObject);
     }
 

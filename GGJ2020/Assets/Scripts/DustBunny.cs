@@ -17,7 +17,7 @@ public class DustBunny : MonoBehaviour
     public float timeToJumpApex = .4f;
     float accelerationTimeAirborne = .2f;
     float accelerationTimeGrounded = .1f;
-    float moveSpeed = 6;
+    float moveSpeed = 4;
 
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpOff;
@@ -44,9 +44,9 @@ public class DustBunny : MonoBehaviour
 
     public GameObject target;
 
-    public int health = 120;
+    public int health = 3;
 
-    //public bool canAttack = true;
+    public bool canAttack = true;
 
     private bool attacking = false;
     public float attackCooldown = 3f;
@@ -72,21 +72,37 @@ public class DustBunny : MonoBehaviour
         //        timerEnded();
         //    }
         //}
-
-        if (target.transform.position.x > transform.position.x)
+        if (Vector2.Distance(transform.position, target.transform.position) <= 5)
         {
-            directionalInput = Vector2.right;
+            if (!attacking)
+            {
+                attacking = true;
+                animator.SetTrigger("RevealT");
+                animator.SetBool("Chase", true);
+            }
+
+            if (target.transform.position.x > transform.position.x)
+            {
+                directionalInput = Vector2.right;
+            }
+            else
+            {
+                directionalInput = Vector2.left;
+            }
         }
         else
         {
-            directionalInput = Vector2.left;
-        }
-
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Knight_LightAttack") || animator.GetCurrentAnimatorStateInfo(0).IsName("Knight_HeavyAttack")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("Knight_Hit"))
-        {
+            attacking = false;
+            animator.ResetTrigger("RevealT");
+            animator.SetBool("Chase", false);
             directionalInput = Vector2.zero;
         }
+
+        //if (animator.GetCurrentAnimatorStateInfo(0).IsName("Knight_LightAttack") || animator.GetCurrentAnimatorStateInfo(0).IsName("Knight_HeavyAttack")
+        //    || animator.GetCurrentAnimatorStateInfo(0).IsName("Knight_Hit"))
+        //{
+        //    directionalInput = Vector2.zero;
+        //}
 
         CalculateVelocity();
 
@@ -105,48 +121,48 @@ public class DustBunny : MonoBehaviour
         }
 
 
-        if (Vector2.Distance(transform.position, target.transform.position) <= 3)
-        {
-            //lastAttackPressTime = Time.time;
-            comboPresses++;
-            if (comboPresses == 1)
-            {
-                //animator.SetBool("LightAttack", true);
-                animator.SetTrigger("LightAttackT");
-            }
-            // Debug.Log("Enemy Combo Presses = " + comboPresses);
-            comboPresses = Mathf.Clamp(comboPresses, 0, 2);
-        }
+        //if (Vector2.Distance(transform.position, target.transform.position) <= 3)
+        //{
+        //    //lastAttackPressTime = Time.time;
+        //    comboPresses++;
+        //    if (comboPresses == 1)
+        //    {
+        //        //animator.SetBool("LightAttack", true);
+        //        animator.SetTrigger("LightAttackT");
+        //    }
+        //    // Debug.Log("Enemy Combo Presses = " + comboPresses);
+        //    comboPresses = Mathf.Clamp(comboPresses, 0, 2);
+        //}
     }
 
-    public void ReturnLightAttack()
-    {
-        if (comboPresses >= 2)
-        {
-            //animator.SetBool("HeavyAttack", true);
-            animator.SetTrigger("HeavyAttackT");
-        }
-        else
-        {
-            animator.SetBool("LightAttack", false);
-            comboPresses = 0;
-        }
-    }
+    //public void ReturnLightAttack()
+    //{
+    //    if (comboPresses >= 2)
+    //    {
+    //        //animator.SetBool("HeavyAttack", true);
+    //        animator.SetTrigger("HeavyAttackT");
+    //    }
+    //    else
+    //    {
+    //        animator.SetBool("LightAttack", false);
+    //        comboPresses = 0;
+    //    }
+    //}
 
-    public void ReturnHeavyAttack()
-    {
-        //animator.SetBool("LightAttack", false);
-        //animator.SetBool("HeavyAttack", false);
-        comboPresses = 0;
-        directionalInput = Vector2.zero;
-    }
-    public void DisableHurtBox()
-    {
-        //animator.SetBool("LightAttack", false);
-        //animator.SetBool("HeavyAttack", false);
-        // lightAttackHurtBox.enabled = false;
-        // heavyAttackHurtBox.enabled = false;
-    }
+    //public void ReturnHeavyAttack()
+    //{
+    //    //animator.SetBool("LightAttack", false);
+    //    //animator.SetBool("HeavyAttack", false);
+    //    comboPresses = 0;
+    //    directionalInput = Vector2.zero;
+    //}
+    //public void DisableHurtBox()
+    //{
+    //    //animator.SetBool("LightAttack", false);
+    //    //animator.SetBool("HeavyAttack", false);
+    //    // lightAttackHurtBox.enabled = false;
+    //    // heavyAttackHurtBox.enabled = false;
+    //}
 
     void ResetDamaged()
     {
@@ -161,15 +177,17 @@ public class DustBunny : MonoBehaviour
     //}
 
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         //if (canAttack)
         //{
 
-        if (!attacking)
-        {
-            attacking = true;
-        }
+        //if (!attacking)
+        //{
+        //    attacking = true;
+        //    animator.settrigger("revealt");
+        //    animator.setbool("chase", true);
+        //}
 
         if (col.gameObject.tag == "Player" && !currentCollisions.Contains(col.gameObject) && attacking == true)
         {
@@ -178,6 +196,8 @@ public class DustBunny : MonoBehaviour
             print(damageAmount);
             //canAttack = false;
             //targetTime = 2.0f;
+            animator.SetBool("Chase", false);
+            attacking = false;
             Debug.Log("Adding" + col.gameObject.tag + "to List");
 
             StartCoroutine(attackCooldownTime());
@@ -207,6 +227,7 @@ public class DustBunny : MonoBehaviour
         Debug.Log("Enemy Health = " + health);
         if (health <= 0)
         {
+            SoundManagerScript.PlaySound("dustDeath");
             Destroy(this.gameObject);
         }
     }
